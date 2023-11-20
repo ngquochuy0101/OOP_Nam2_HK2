@@ -2,20 +2,10 @@
 public class Employee {
 
     private int EMPID;
-    private String name;
-    private String sex;
-    private int phone;
-    private String email;
-    private String address;
 
-    public Employee(int EMPID, String name, String sex,
-            int phone, String email, String address) {
+    public Employee(int EMPID) {
         this.EMPID = EMPID;
-        this.name = name;
-        this.sex = sex;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+
     }
 
     public Employee() {
@@ -31,7 +21,7 @@ public class Employee {
 
     // other getters and setters
     public void create() {
-        // logic to create employee 
+        // logic to create employee
     }
 
     public void update() {

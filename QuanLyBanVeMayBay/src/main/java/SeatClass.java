@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author Nguyen Quoc Huy
- */
 public interface SeatClass {
-    public boolean typeSeat();
+    public boolean typeSeat();// 0 là phổ thông, 1 là thương gia
 }

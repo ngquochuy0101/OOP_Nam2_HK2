@@ -1,19 +1,30 @@
-public class Seat {
+import java.util.Scanner;
+
+public class Seat implements SeatClass{
 
   private String seatNumber;
-  private SeatClass classS;
+  private boolean SeatType;
 
-  public Seat(String seatNumber, SeatClass classs) {
+  public Seat(String seatNumber, boolean classs) {
     this.seatNumber = seatNumber;
-    this.classS = classs; 
+    this.SeatType = classs;
   }
 
   public String getSeatNumber() {
     return seatNumber;
   }
 
-  public SeatClass getSeatType() {
-    return classS;
+  public boolean getSeatType() {
+    return SeatType;
   }
 
+  public void setSeatNumber(Scanner sc) {
+    seatNumber = sc.nextLine();
+  }
+
+  public boolean typeSeat() {
+    if(SeatType==true)
+      return true;
+    return false;
+  }
 }

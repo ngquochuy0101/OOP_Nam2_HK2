@@ -2,14 +2,9 @@
 //tinh trang cho ngoi
 public interface ReservationStatus {
 
-  public boolean requested();
+  public boolean Check();//chỗ ngồi còn trống hay ko
+  // neu =1 thì đã có chỗ, 0 thì ngược lại
 
-  public boolean pending();
-
-  public boolean confirmed();
-
-  public boolean checkedIn();
-
-  public boolean canceled();
+  
 
 }

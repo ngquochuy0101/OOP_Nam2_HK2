@@ -1,7 +1,10 @@
+import java.util.Scanner;
+
 public class FlightSeat {
 
-  private float fare;
-  private String reservationNumber;
+  private float fare; // loai ve
+  private String reservationNumber; // Mã đặt chỗ
+
 
   public FlightSeat(float fare, String reservationNumber) {
     this.fare = fare;
@@ -15,5 +18,13 @@ public class FlightSeat {
   public String getReservationNumber() {
     return reservationNumber;
   }
+   public void setFare(Scanner sc) {
+    fare=sc.nextFloat();
+  }
+
+  public void setReservationNumber(Scanner sc) {
+    reservationNumber=sc.nextLine();
+  }
+
 
 }

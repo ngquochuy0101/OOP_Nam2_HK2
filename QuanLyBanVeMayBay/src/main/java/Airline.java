@@ -1,7 +1,8 @@
 
 import static java.sql.Types.NULL;
 
-public class Airline {
+public class Airline// hang hang khong
+ {
 
   private String name;
   private String code;
@@ -21,9 +22,9 @@ public class Airline {
 
   public Flight[] getFlights() {
     // return array of Flight objects operated by this airline
-    Flight[] a= NULL;
-    return;
+    Flight[] a= new Flight[1];
+    return a;
   }
-
+  
 }
 

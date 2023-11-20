@@ -37,8 +37,20 @@ public class SignupLogin {
             while (fileReader.hasNextLine()) {
                 String[] userData = fileReader.nextLine().split(",");
                 if (userData[0].equals(username) && userData[1].equals(password)) {
-                    System.out.println("Dang nhap thanh!");
-                    return;
+                    System.out.println("Dang nhap thanh cong!");
+                    while (true) {
+                       
+                        System.out.print("1. Dat ve \n2. Xem ve da mua\n3. Xem thong tin tai khoan"
+                                + "\n0. Thoat\nMoi ban chon: ");
+                        int choice = input.nextInt();
+                        if (choice == 1) {
+                            login();
+                        } else if (choice == 2) {
+                            signup();
+                        } else if (choice == 0) {
+                            return;
+                        }
+                    }
                 }
             }
             System.out.println("Thong tin dang nhap khong hop le!");
@@ -72,7 +84,7 @@ public class SignupLogin {
 
             if (isUsernameExists) {
                 System.out.println("Ten nguoi dung da ton tai! Vui long nhap lai:");
-         
+
                 signup();
             } else {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true));
@@ -80,6 +92,7 @@ public class SignupLogin {
                 writer.newLine();
                 writer.close();
                 System.out.println("Tao tai khoan thanh cong!");
+                login();
             }
         } catch (Exception e) {
             System.out.println("Tao tai khoan that bai!");

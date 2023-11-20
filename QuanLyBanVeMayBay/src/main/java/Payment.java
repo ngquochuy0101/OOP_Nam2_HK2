@@ -5,7 +5,9 @@ public class Payment {
   public Payment(String field) {
     this.field = field;
   }
-
+  public Payment(){
+    
+  }
   public String getField() {
     return field;
   }

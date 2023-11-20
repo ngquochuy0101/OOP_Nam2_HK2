@@ -3,6 +3,9 @@ public class Pilot {
   private String field;
 
   public Pilot() {}
+  public Pilot(String f){
+    field=f;
+  }
 
   public String getField() {
     return field;
