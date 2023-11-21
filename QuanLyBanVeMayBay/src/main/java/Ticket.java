@@ -7,7 +7,7 @@
  *
  * @author Nguyen Quoc Huy
  */
-public class Ve {
+public class Ticket {
     private String IDticket;
     private float fee;
     Flight flight;

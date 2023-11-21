@@ -7,13 +7,13 @@
  *
  * @author Nguyen Quoc Huy
  */
-public class VeNoiDia extends Ve {
+public class DomesTictickets extends Ticket {
     private String tinhThanhDem;
 
-    public VeNoiDia() {
+    public DomesTictickets() {
     }
 
-    public VeNoiDia(String tinhThanhDem) {
+    public DomesTictickets(String tinhThanhDem) {
         this.tinhThanhDem = tinhThanhDem;
     }
 

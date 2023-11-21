@@ -7,14 +7,14 @@
  *
  * @author Nguyen Quoc Huy
  */
-public class VeQuocTe extends Ve {
+public class InternationalTickets extends Ticket {
     private String quocGiaDen;
     private int maPassport;
 
-    public VeQuocTe() {
+    public InternationalTickets() {
     }
 
-    public VeQuocTe(String quocGiaDen, int maPassport) {
+    public InternationalTickets(String quocGiaDen, int maPassport) {
         this.quocGiaDen = quocGiaDen;
         this.maPassport = maPassport;
     }
