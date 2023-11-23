@@ -76,15 +76,15 @@ public class TuyenBay {
     // Phương thức nhập dữ liệu từ bàn phím
     public void nhapDuLieuTuyenBay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã tuyến bay:");
+        System.out.println("Nhap ma tuyen bay:");
         this.matuyenbay = scanner.nextLine();
-        System.out.println("Nhập mã sân bay cất cánh:");
+        System.out.println("Nhap ma san bay cat canh:");
         this.masanbaycatcanh = scanner.nextLine();
-        System.out.println("Nhập sân bay hạ cánh:");
+        System.out.println("Nhap san bay ha canh:");
         this.sanbayhacanh = scanner.nextLine();
-        System.out.println("Nhập giờ cất cánh (dd/MM/yyyy HH:mm):");
+        System.out.println("Nhap gio cat canh (dd/MM/yyyy HH:mm):");
         String gioCatCanhStr = scanner.nextLine();
-        System.out.println("Nhập giờ hạ cánh (dd/MM/yyyy HH:mm):");
+        System.out.println("Nhap gio ha canh (dd/MM/yyyy HH:mm):");
         String gioHaCanhStr = scanner.nextLine();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -135,16 +135,16 @@ public class TuyenBay {
     // Phương thức cập nhật thông tin tuyến bay trong mảng động
     public static void capNhatThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã tuyến bay cần cập nhật:");
+        System.out.println("Nhap ma tuyen bay can cap nhat:");
         String maTuyenBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongTuyenBay; i++) {
             if (danhSachTuyenBay[i].getMaTuyenBay().equals(maTuyenBay)) {
-                System.out.println("Nhập mã sân bay hạ cánh mới:");
+                System.out.println("Nhap ma san bay ha canh moi:");
                 danhSachTuyenBay[i].setSanBayHaCanh(scanner.nextLine());
-                System.out.println("Nhập giờ cất cánh mới (dd/MM/yyyy HH:mm):");
+                System.out.println("Nhap gio cat canh moi (dd/MM/yyyy HH:mm):");
                 String gioCatCanhStr = scanner.nextLine();
-                System.out.println("Nhập giờ hạ cánh mới (dd/MM/yyyy HH:mm):");
+                System.out.println("Nhap gio ha canh moi (dd/MM/yyyy HH:mm):");
                 String gioHaCanhStr = scanner.nextLine();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                 try {
@@ -162,7 +162,7 @@ public class TuyenBay {
     // Phương thức xóa thông tin tuyến bay từ mảng động
     public static void xoaThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã tuyến bay cần xóa:");
+        System.out.println("Nhap ma tuyen bay can xoa:");
         String maTuyenBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongTuyenBay; i++) {
@@ -174,7 +174,7 @@ public class TuyenBay {
                 break;
             }
         }
-        System.out.println("Danh Sách Tuyến Bay Sau Khi Xóa");
+        System.out.println("Danh sach tuyen bay sau khi xoa");
         hienThiDanhSachTuyenBay();
     }
 
@@ -184,10 +184,10 @@ public class TuyenBay {
             TuyenBay tuyenBayMoi = new TuyenBay();
             tuyenBayMoi.nhapDuLieu();
             danhSachTuyenBay[soLuongTuyenBay++] = tuyenBayMoi;
-            System.out.println("Danh Sách Tuyến Bay Sau Khi Thêm");
+            System.out.println("Danh sach tuyen bay sau khi them");
             hienThiDanhSachTuyenBay();
         } else {
-            System.out.println("Danh sách tuyến bay đã đầy. Không thể thêm tuyến bay mới.");
+            System.out.println("Danh sach tuyen bay da day. Khong the them tuyen bay moi.");
         }
     }
 
@@ -210,12 +210,12 @@ public class TuyenBay {
         themTuyenBay();
 
         // Hiển thị danh sách sau khi thêm
-        System.out.println("\nDanh sách sau khi thêm:");
+        System.out.println("\nDanh sach sau khi them:");
         hienThiDanhSachTuyenBay();
 
         // Cập nhật thông tin một tuyến bay
         capNhatThongTin();
-        System.out.println("\nDanh sách sau khi cập nhật:");
+        System.out.println("\nDanh sach sau khi cap nhat:");
         hienThiDanhSachTuyenBay();
 
         // Xóa một tuyến bay

@@ -64,13 +64,13 @@ public class LoTrinh {
     // Phương thức nhập dữ liệu từ bàn phím
     public void nhapDuLieuLoTrinh() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã lộ trình:");
+        System.out.println("Nhap ma lo trinh:");
         this.malotrinh = scanner.nextLine();
-        System.out.println("Nhập tên lộ trình:");
+        System.out.println("Nhap ten lo trinh:");
         this.tenlotrinh = scanner.nextLine();
-        System.out.println("Nhập nơi đến:");
+        System.out.println("Nhap noi den:");
         this.noiden = scanner.nextLine();
-        System.out.println("Nhập nơi đi:");
+        System.out.println("Nhap noi di:");
         this.noidi = scanner.nextLine();
     }
 
@@ -109,16 +109,16 @@ public class LoTrinh {
     // Phương thức cập nhật thông tin lộ trình trong mảng động
     public static void capNhatThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã lộ trình cần cập nhật:");
+        System.out.println("Nhap ma lo trinh can cap nhat:");
         String maLoTrinh = scanner.nextLine();
 
         for (int i = 0; i < soLuongLoTrinh; i++) {
             if (danhSachLoTrinh[i].getMaLoTrinh().equals(maLoTrinh)) {
-                System.out.println("Nhập tên lộ trình mới:");
+                System.out.println("Nhap ten lo trinh moi:");
                 danhSachLoTrinh[i].setTenLoTrinh(scanner.nextLine());
-                System.out.println("Nhập nơi đến mới:");
+                System.out.println("Nhap noi den moi:");
                 danhSachLoTrinh[i].setNoiDen(scanner.nextLine());
-                System.out.println("Nhập nơi đi mới:");
+                System.out.println("Nhap noi di moi:");
                 danhSachLoTrinh[i].setNoiDi(scanner.nextLine());
                 break;
             }
@@ -130,7 +130,7 @@ public class LoTrinh {
     // Phương thức xóa thông tin lộ trình từ mảng động
     public static void xoaThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã lộ trình cần xóa:");
+        System.out.println("Nhap ma lo trinh can xoa:");
         String maLoTrinh = scanner.nextLine();
 
         for (int i = 0; i < soLuongLoTrinh; i++) {
@@ -141,7 +141,7 @@ public class LoTrinh {
                 soLuongLoTrinh--;
                 break;
             }
-            System.out.println("Danh Sách Lộ Trình Sau Khi xóa");
+            System.out.println("Danh sach lo trinh sau khi xoa");
             
         }
         //hiện thị danh sách sau khi xóa
@@ -156,7 +156,7 @@ public class LoTrinh {
             danhSachLoTrinh[soLuongLoTrinh++] = loTrinhMoi;
            
         } else {
-            System.out.println("Danh sách lộ trình đã đầy. Không thể thêm lộ trình mới.");
+            System.out.println("Danh sach lo trinh da day. Khong the them lo trinh moi.");
         }
         //Hiện thị danh sách sau khi thêm mới
         hienThiDanhSachLoTrinh();

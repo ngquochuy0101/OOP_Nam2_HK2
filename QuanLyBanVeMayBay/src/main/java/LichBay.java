@@ -56,11 +56,11 @@ public class LichBay {
     // Phương thức nhập dữ liệu từ bàn phím
     public void nhapDuLieuLichBay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã lịch bay:");
+        System.out.println("Nhap ma lich bay:");
         this.malichbay = scanner.nextLine();
-        System.out.println("Nhập ngày hiệu lực (dd/MM/yyyy HH:mm):");
+        System.out.println("Nhap ngay hieu luc (dd/MM/yyyy HH:mm):");
         String ngayHieuLucStr = scanner.nextLine();
-        System.out.println("Nhập ngày hết hiệu lực (dd/MM/yyyy HH:mm):");
+        System.out.println("Nhap ngay het hieu luc (dd/MM/yyyy HH:mm):");
         String ngayHetHieuLucStr = scanner.nextLine();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -108,12 +108,12 @@ public class LichBay {
     // Phương thức cập nhật thông tin lịch bay trong mảng động
     public static void capNhatThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã lịch bay cần cập nhật:");
+        System.out.println("Nhap ma lich bay can cap nhat:");
         String maLichBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongLichBay; i++) {
             if (danhSachLichBay[i].getMaLichBay().equals(maLichBay)) {
-                System.out.println("Nhập ngày hết hiệu lực mới (dd/MM/yyyy HH:mm):");
+                System.out.println("Nhap ngay het hieu luc moi (dd/MM/yyyy HH:mm):");
                 String ngayHetHieuLucStr = scanner.nextLine();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                 try {
@@ -125,14 +125,14 @@ public class LichBay {
             }
         }
         // Hiển thị danh sách sau khi cập nhật
-        System.out.println("\nDanh sách sau khi cập nhật:");
+        System.out.println("\nDanh sach sau khi cap nhat:");
         hienThiDanhSachLichBay();
     }
 
     // Phương thức xóa thông tin lịch bay từ mảng động
     public static void xoaThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã lịch bay cần xóa:");
+        System.out.println("Nhap ma lich bay can xoa:");
         String maLichBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongLichBay; i++) {
@@ -144,7 +144,7 @@ public class LichBay {
                 break;
             }
         }
-        System.out.println("Danh Sách Lịch Bay Sau Khi Xóa");
+        System.out.println("Danh sach lich bay sau khi xoa");
         hienThiDanhSachLichBay();
     }
 
@@ -155,10 +155,10 @@ public class LichBay {
             lichBayMoi.nhapDuLieu();
             danhSachLichBay[soLuongLichBay++] = lichBayMoi;
         } else {
-            System.out.println("Danh sách lịch bay đã đầy. Không thể thêm lịch bay mới.");
+            System.out.println("Danh sach lich bay da day. Khong the them lich bay moi.");
         }
         // Hiển thị danh sách sau khi thêm
-        System.out.println("\nDanh sách sau khi thêm:");
+        System.out.println("\nDanh sach sau khi them:");
         hienThiDanhSachLichBay();
     }
 

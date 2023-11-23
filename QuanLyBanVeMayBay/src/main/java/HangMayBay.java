@@ -44,9 +44,9 @@ public class HangMayBay {
     // Phương thức nhập dữ liệu từ bàn phím
     public void nhapDuLieuHangMayBay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã hãng máy bay:");
+        System.out.println("Nhap ma hang may bay");
         this.mahang = scanner.nextLine();
-        System.out.println("Nhập tên hãng máy bay:");
+        System.out.println("Nhap ten hang may bay:");
         this.tenhang = scanner.nextLine();
     }
 
@@ -85,12 +85,12 @@ public class HangMayBay {
     // Phương thức cập nhật thông tin hãng máy bay trong mảng động
     public static void capNhatThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã hãng máy bay cần cập nhật:");
+        System.out.println("Nhap ma hang may bay can cap nhat:");
         String maHang = scanner.nextLine();
 
         for (int i = 0; i < soLuongHangMayBay; i++) {
             if (danhSachHangMayBay[i].getMaHang().equals(maHang)) {
-                System.out.println("Nhập tên hãng máy bay mới:");
+                System.out.println("Nhap ten hang may bay moi:");
                 danhSachHangMayBay[i].setTenHang(scanner.nextLine());
                 danhSachHangMayBay[i].xuatDuLieu();
                 break;
@@ -102,7 +102,7 @@ public class HangMayBay {
     // Phương thức xóa thông tin hãng máy bay từ mảng động
     public static void xoaThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã hãng máy bay cần xóa:");
+        System.out.println("Nhap ma hang may bay can xoa:");
         String maHang = scanner.nextLine();
 
         for (int i = 0; i < soLuongHangMayBay; i++) {
@@ -114,7 +114,7 @@ public class HangMayBay {
                 break;
             }
         }
-        System.out.println("Danh Sách Hãng Máy Bay Sau Khi Xóa");
+        System.out.println("Danh sach hang may bay sau khi xoa");
         hienThiDanhSachHangMayBay();
     }
 
@@ -125,7 +125,7 @@ public class HangMayBay {
             hangMayBayMoi.nhapDuLieu();
             danhSachHangMayBay[soLuongHangMayBay++] = hangMayBayMoi;
         } else {
-            System.out.println("Danh sách hãng máy bay đã đầy. Không thể thêm hãng máy bay mới.");
+            System.out.println("Danh sach hang may bay da day. Khong the them hang may bay moi.");
         }
         hienThiDanhSachHangMayBay();
     }
