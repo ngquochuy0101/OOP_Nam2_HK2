@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.oop_do_an;
 import java.io.*;
 import java.util.Scanner;
 import java.text.ParseException;
@@ -182,7 +181,7 @@ public class TuyenBay {
     public static void themTuyenBay() {
         if (soLuongTuyenBay < MAX_TUYENBAY) {
             TuyenBay tuyenBayMoi = new TuyenBay();
-            tuyenBayMoi.nhapDuLieu();
+            tuyenBayMoi.nhapDuLieuTuyenBay();
             danhSachTuyenBay[soLuongTuyenBay++] = tuyenBayMoi;
             System.out.println("Danh Sách Tuyến Bay Sau Khi Thêm");
             hienThiDanhSachTuyenBay();
@@ -222,6 +221,3 @@ public class TuyenBay {
         xoaThongTin();
     }
 }
-
-
-

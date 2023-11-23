@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.oop_do_an;
+
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -152,7 +152,7 @@ public class LichBay {
     public static void themLichBay() {
         if (soLuongLichBay < MAX_LICHBAY) {
             LichBay lichBayMoi = new LichBay();
-            lichBayMoi.nhapDuLieu();
+            lichBayMoi.nhapDuLieuLichBay();
             danhSachLichBay[soLuongLichBay++] = lichBayMoi;
         } else {
             System.out.println("Danh sách lịch bay đã đầy. Không thể thêm lịch bay mới.");
