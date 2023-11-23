@@ -52,11 +52,11 @@ public class SanBay {
     // Phương thức nhập dữ liệu từ bàn phím
     public void nhapDuLieuSanBay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã sân bay:");
+        System.out.println("Nhap ma san bay:");
         this.masanbay = scanner.nextLine();
-        System.out.println("Nhập tên sân bay:");
+        System.out.println("Nhap ten san bay:");
         this.tensanbay = scanner.nextLine();
-        System.out.println("Nhập tên thành phố:");
+        System.out.println("Nhap ten thanh pho:");
         this.tenthanhpho = scanner.nextLine();
     }
 
@@ -95,27 +95,27 @@ public class SanBay {
     // Phương thức cập nhật thông tin sân bay trong mảng động
     public static void capNhatThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã sân bay cần cập nhật:");
+        System.out.println("Nhap ma san bay can cap nhat:");
         String maSanBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongSanBay; i++) {
             if (danhSachSanBay[i].getMaSanBay().equals(maSanBay)) {
-                System.out.println("Nhập tên sân bay mới:");
+                System.out.println("Nhap ten san bay moi:");
                 danhSachSanBay[i].setTenSanBay(scanner.nextLine());
-                System.out.println("Nhập tên thành phố mới:");
+                System.out.println("Nhap ten thanh pho moi:");
                 danhSachSanBay[i].setTenThanhPho(scanner.nextLine());
                 break;
             }
         }
         // Hiển thị danh sách sau khi cập nhập
-        System.out.println("\nDanh sách sau khi cập nhật :");
+        System.out.println("\nDanh sach sau khi cap nhat :");
         hienThiDanhSachSanBay();
     }
 
     // Phương thức xóa thông tin sân bay từ mảng động
     public static void xoaThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã sân bay cần xóa:");
+        System.out.println("Nhap ma san bay can xoa:");
         String maSanBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongSanBay; i++) {
@@ -129,7 +129,7 @@ public class SanBay {
         }
 
         // Hiển thị danh sách sân bay sau khi xóa
-        System.out.println("\nDanh sách sau khi xóa:");
+        System.out.println("\nDanh sach sau khi xoa:");
         hienThiDanhSachSanBay();
     }
 
@@ -150,10 +150,10 @@ public class SanBay {
             danhSachSanBay[soLuongSanBay++] = sanBayMoi;
             
         } else {
-            System.out.println("Danh sách sân bay đã đầy. Không thể thêm sân bay");
+            System.out.println("Danh sach san bay da day. Khong the them san bay");
         }
         // Hiển thị danh sách sau khi thêm
-        System.out.println("\nDanh sách sau khi thêm:");
+        System.out.println("\nDanh sach sau khi them:");
         hienThiDanhSachSanBay();
     }
 

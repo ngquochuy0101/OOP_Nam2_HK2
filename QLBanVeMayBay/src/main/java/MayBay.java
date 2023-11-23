@@ -53,11 +53,11 @@ public class MayBay {
     // Phương thức nhập dữ liệu từ bàn phím
     public void nhapDuLieuMayBay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã máy bay:");
+        System.out.println("Nhap ma may bay:");
         this.mamaybay = scanner.nextLine();
-        System.out.println("Nhập loại máy bay:");
+        System.out.println("Nhap loai may bay:");
         this.loaimaybay = scanner.nextLine();
-        System.out.println("Nhập mô tả máy bay:");
+        System.out.println("Nhap mo ta may bay:");
         this.mota = scanner.nextLine();
     }
 
@@ -96,14 +96,14 @@ public class MayBay {
     // Phương thức cập nhật thông tin máy bay trong mảng động
     public static void capNhatThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã máy bay cần cập nhật:");
+        System.out.println("Nhap ma may bay can cap nhat:");
         String maMayBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongMayBay; i++) {
             if (danhSachMayBay[i].getMaMayBay().equals(maMayBay)) {
-                System.out.println("Nhập loại máy bay mới:");
+                System.out.println("Nhap loai may bay moi:");
                 danhSachMayBay[i].setLoaiMayBay(scanner.nextLine());
-                System.out.println("Nhập mô tả máy bay mới:");
+                System.out.println("Nhap mo ta may bay moi:");
                 danhSachMayBay[i].setMoTa(scanner.nextLine());
                 danhSachMayBay[i].xuatDuLieu();
                 break;
@@ -115,7 +115,7 @@ public class MayBay {
     // Phương thức xóa thông tin máy bay từ mảng động
     public static void xoaThongTin() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập mã máy bay cần xóa:");
+        System.out.println("Nhap ma may bay can xoa:");
         String maMayBay = scanner.nextLine();
 
         for (int i = 0; i < soLuongMayBay; i++) {
@@ -127,7 +127,7 @@ public class MayBay {
                 break;
             }
         }
-        System.out.println("Danh Sách Máy Bay Sau Khi Xóa");
+        System.out.println("Danh sach may bay sau khi xoa");
         hienThiDanhSachMayBay();
     }
 
@@ -137,9 +137,9 @@ public class MayBay {
             MayBay mayBayMoi = new MayBay();
             mayBayMoi.nhapDuLieuMayBay();
             danhSachMayBay[soLuongMayBay++] = mayBayMoi;
-            System.out.println("Danh Sách Máy Bay Sau Khi Thêm");
+            System.out.println("Danh sach may bay sau khi them");
         } else {
-            System.out.println("Danh sách máy bay đã đầy. Không thể thêm máy bay mới.");
+            System.out.println("Danh sach may bay da day. Khong the them may bay moi.");
         }
         //hiện thị danh sách sau khi thêm mới
         hienThiDanhSachMayBay();
