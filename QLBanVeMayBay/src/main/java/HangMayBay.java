@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.oop_do_an;
+
 
 import java.io.*;
 import java.util.Scanner;
@@ -122,7 +122,7 @@ public class HangMayBay {
     public static void themHangMayBay() {
         if (soLuongHangMayBay < MAX_HANGMAYBAY) {
             HangMayBay hangMayBayMoi = new HangMayBay();
-            hangMayBayMoi.nhapDuLieu();
+            hangMayBayMoi.nhapDuLieuHangMayBay();
             danhSachHangMayBay[soLuongHangMayBay++] = hangMayBayMoi;
         } else {
             System.out.println("Danh sach hang may bay da day. Khong the them hang may bay moi.");

@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.oop_do_an;
 
 import java.io.*;
 import java.util.Scanner;
@@ -147,7 +146,7 @@ public class SanBay {
     public static void themSanBay() {
         if (soLuongSanBay < MAX_SANBAY) {
             SanBay sanBayMoi = new SanBay();
-            sanBayMoi.nhapDuLieu();
+            sanBayMoi.nhapDuLieuSanBay();
             danhSachSanBay[soLuongSanBay++] = sanBayMoi;
             
         } else {
