@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.doan;
 
 import java.util.Scanner;
 
@@ -10,7 +9,7 @@ import java.util.Scanner;
  *
  * @author GIA NGHI TRINH
  */
-public class DoAn {
+public class Nghi {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         /*
