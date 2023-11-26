@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Random;
 
 import java.util.Scanner;
 
@@ -209,6 +210,20 @@ public class ChuyenBay {
 
     }
 
+    public static String generateRandomString(int length) {
+        String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            sb.append(randomChar);
+        }
+
+        return sb.toString();
+    }
+
     public void setChuyenBayUser() throws FileNotFoundException {
         String thongTinVe = "";
 
@@ -278,6 +293,9 @@ public class ChuyenBay {
                     String loaiVe = sc.nextLine();
                     System.out.println("Moi ban chon so luong ve:");
                     slVe = sc.nextInt();
+                    int length = 6;
+                    String maVe = generateRandomString(length);
+
                     if (isSubstringPresent(loaiVe, phoThong)) {
                         thongTinVe += "San bay cat canh " + sanbayCatCanhFile
                                 + ", San bay ha canh " + sanbayHaCanhFile
@@ -285,7 +303,7 @@ public class ChuyenBay {
                                 + ", Ten hang: " + tenHang
                                 + ", Tong gia tien: " + Integer.parseInt(phoThong) * slVe;
                     } else {
-                          thongTinVe += "San bay cat canh " + sanbayCatCanhFile
+                        thongTinVe += "San bay cat canh " + sanbayCatCanhFile
                                 + ", San bay ha canh " + sanbayHaCanhFile
                                 + ", Ma chuyen bay: " + maFile
                                 + ", Ten hang: " + tenHang
@@ -293,11 +311,13 @@ public class ChuyenBay {
                     }
                     ConNguoi[] dsConNguoi = new ConNguoi[slVe];
                     for (int j = 1; j <= slVe; j++) {
-                        System.out.println("Moi nhap thong tin khach hang thu "+j+": ");
+                        System.out.println("Moi nhap thong tin khach hang thu " + j + ": ");
                         ConNguoi cn = new ConNguoi();
                         cn.nhapTT();
+                        maVe = generateRandomString(length);
                         thongTinVe += ", Thong tin hanh khach thu " + j
-                                + ": Ho ten: " + cn.getHoTen()
+                                + ": " + "Ma ve " + maVe
+                                + ", Ho ten: " + cn.getHoTen()
                                 + ", CCCD: " + cn.getCCCD()
                                 + ", Ngay sinh: " + cn.getNgaySinh()
                                 + ", So dien thoai: " + cn.getSDT() + "";
@@ -305,7 +325,8 @@ public class ChuyenBay {
                     if (isSubstringPresent(loaiVe, phoThong)) {
 
                         System.out.println("Ve cua quy khach:");
-                        System.out.println("San bay cat canh " + sanbayCatCanhFile);
+                        System.out.println("Ma ve " + maVe + "\n"
+                                + "San bay cat canh " + sanbayCatCanhFile);
                         System.out.println("San bay ha canh " + sanbayHaCanhFile);
                         System.out.println("Ma chuyen bay: " + maFile);
                         System.out.println("Ten hang: " + tenHang);
@@ -411,4 +432,5 @@ public class ChuyenBay {
         ChuyenBay cbUser = new ChuyenBay();
         cbUser.menuSetChuyenBayUser();
     }
+
 }

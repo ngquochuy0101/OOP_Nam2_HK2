@@ -15,6 +15,7 @@ public class MayBay {
     private String mamaybay;
     private String loaimaybay;
     private String mota;
+    private int slGheNgoi;
 
     public MayBay() {
         // Constructor rỗng để sử dụng khi nhập dữ liệu từ bàn phím
@@ -56,9 +57,9 @@ public class MayBay {
         System.out.println("Nhap ma may bay:");
         this.mamaybay = scanner.nextLine();
         System.out.println("Nhap loai may bay:");
-        this.loaimaybay = scanner.nextLine();
-        System.out.println("Nhap mo ta may bay:");
-        this.mota = scanner.nextLine();
+        this.loaimaybay = scanner.nextLine();scanner.nextLine();
+          System.out.println("Nhap so luong cho ngoi:");
+        slGheNgoi=scanner.nextInt();
     }
 
     
@@ -70,7 +71,7 @@ public class MayBay {
 
     @Override
     public String toString() {
-        return "mamaybay=" + mamaybay + ", loaimaybay=" + loaimaybay + ", mota=" + mota;
+        return "mamaybay=" + mamaybay + ", loaimaybay=" + loaimaybay + ", mota=" + mota+", slghengoi=" + slGheNgoi;
     }
 
     // Phương thức lưu dữ liệu vào file
