@@ -16,10 +16,10 @@ public class LichBay {
     private static int soLuongLichBay = 0; // Số lượng lịch bay hiện tại trong danh sách
 
     private String malichbay;
-    private Date ngayhieuluc;
-    private Date ngayhethieuluc;
+    private String ngayhieuluc;
+    private String ngayhethieuluc;
 
-    public LichBay(String malichbay, Date ngayhieuluc, Date ngayhethieuluc) {
+    public LichBay(String malichbay, String ngayhieuluc, String ngayhethieuluc) {
         this.malichbay = malichbay;
         this.ngayhieuluc = ngayhieuluc;
         this.ngayhethieuluc = ngayhethieuluc;
@@ -37,19 +37,19 @@ public class LichBay {
         this.malichbay = malichbay;
     }
 
-    public Date getNgayHieuLuc() {
+    public String getNgayHieuLuc() {
         return ngayhieuluc;
     }
 
-    public void setNgayHieuLuc(Date ngayhieuluc) {
+    public void setNgayHieuLuc(String ngayhieuluc) {
         this.ngayhieuluc = ngayhieuluc;
     }
 
-    public Date getNgayHetHieuLuc() {
+    public String getNgayHetHieuLuc() {
         return ngayhethieuluc;
     }
 
-    public void setNgayHetHieuLuc(Date ngayhethieuluc) {
+    public void setNgayHetHieuLuc(String ngayhethieuluc) {
         this.ngayhethieuluc = ngayhethieuluc;
     }
 
@@ -59,22 +59,16 @@ public class LichBay {
         System.out.println("Nhap ma lich bay:");
         this.malichbay = scanner.nextLine();
         System.out.println("Nhap ngay hieu luc (dd/MM/yyyy HH:mm):");
-        String ngayHieuLucStr = scanner.nextLine();
+        ngayhieuluc = scanner.nextLine();
         System.out.println("Nhap ngay het hieu luc (dd/MM/yyyy HH:mm):");
-        String ngayHetHieuLucStr = scanner.nextLine();
+        ngayhethieuluc = scanner.nextLine();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        try {
-            this.ngayhieuluc = dateFormat.parse(ngayHieuLucStr);
-            this.ngayhethieuluc = dateFormat.parse(ngayHetHieuLucStr);
-        } catch (ParseException e) {
-        }
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return String.format("| %-12s | %-21s | %-21s |", malichbay, dateFormat.format(ngayhieuluc), dateFormat.format(ngayhethieuluc));
+
+        return "malichbay=" + malichbay + ", ngayhieuluc=" + ngayhieuluc + ", ngayhethieuluc=" + ngayhethieuluc;
     }
 
     // Phương thức xuất dữ liệu ra màn hình
@@ -97,11 +91,11 @@ public class LichBay {
             while (scanner.hasNextLine() && soLuongLichBay < MAX_LICHBAY) {
                 String[] parts = scanner.nextLine().split(",");
                 if (parts.length == 3) {
-                    LichBay lichBay = new LichBay(parts[0], new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(parts[1]), new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(parts[2]));
+                    LichBay lichBay = new LichBay(parts[0], parts[1], parts[2]);
                     danhSachLichBay[soLuongLichBay++] = lichBay;
                 }
             }
-        } catch (FileNotFoundException | ParseException e) {
+        } catch (FileNotFoundException e) {
         }
     }
 
@@ -115,12 +109,7 @@ public class LichBay {
             if (danhSachLichBay[i].getMaLichBay().equals(maLichBay)) {
                 System.out.println("Nhap ngay het hieu luc moi (dd/MM/yyyy HH:mm):");
                 String ngayHetHieuLucStr = scanner.nextLine();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                try {
-                    danhSachLichBay[i].setNgayHetHieuLuc(dateFormat.parse(ngayHetHieuLucStr));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                danhSachLichBay[i].setNgayHetHieuLuc(ngayHetHieuLucStr);
                 break;
             }
         }
@@ -175,6 +164,3 @@ public class LichBay {
         docDuLieuTuFile("LichBay.txt");
     }
 }
-
-
-

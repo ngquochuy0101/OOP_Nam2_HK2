@@ -9,19 +9,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class VeMayBay {
+public class VeChuyenBay {
     private String maVe;
     private String tinhTrangVe;
     private static final int MAX_VE = 200;
-    private static VeMayBay[] danhSachVe = new VeMayBay[MAX_VE];
+    private static VeChuyenBay[] danhSachVe = new VeChuyenBay[MAX_VE];
     private static int soLuongVe = 0;
 
-    public VeMayBay(String maVe, String tinhTrangVe) {
+    public VeChuyenBay(String maVe, String tinhTrangVe) {
         this.maVe = maVe;
         this.tinhTrangVe = tinhTrangVe;
     }
 
-    public VeMayBay() {
+    public VeChuyenBay() {
     }
 
     public String getMaVe() {
@@ -47,12 +47,13 @@ public class VeMayBay {
         System.out.print("Nhap tinh trang ve: ");
         setTinhTrangVe(sc.nextLine());
     }
-    
+
     @Override
     public String toString() {
-       return String.format("| %-6s | %-15s |", maVe, tinhTrangVe);
+        return  "maVe=" + maVe + ", tinhTrangVe=" + tinhTrangVe ;
     }
     
+  
     public void xuatDuLieuVeMayBay () {
         System.out.println(toString());
     }
@@ -66,7 +67,7 @@ public class VeMayBay {
         }
     }
     
-    public static void docDuLieuTuFile(String tenFile, VeMayBay[] danhSachVe, int MAX_VE) {
+    public static void docDuLieuTuFile(String tenFile, VeChuyenBay[] danhSachVe, int MAX_VE) {
         try (Scanner scanner = new Scanner(new File(tenFile))) {
             while (scanner.hasNextLine() && soLuongVe < MAX_VE) {
                 String[] parts = scanner.nextLine().split(",");
@@ -75,7 +76,7 @@ public class VeMayBay {
                     String maVe = parts[0].trim();
                     String tinhTrangVe = parts[1].trim();
                 
-                    VeMayBay veMayBay = new VeMayBay();
+                    VeChuyenBay veMayBay = new VeChuyenBay();
                     veMayBay.setMaVe(maVe);
                     veMayBay.setTinhTrangVe(tinhTrangVe);
 
@@ -138,7 +139,7 @@ public class VeMayBay {
     
     public void themVeMoi() {
         if (soLuongVe < MAX_VE) {
-            VeMayBay veMoi = new VeMayBay();
+            VeChuyenBay veMoi = new VeChuyenBay();
             veMoi.nhapDuLieuVeMayBay();
 
             danhSachVe[soLuongVe++] = veMoi;

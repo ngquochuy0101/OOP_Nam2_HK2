@@ -1,12 +1,19 @@
-package Do_An_OOP_Nam2_HK2.QLBanVeMayBay.src.main.java.person;
 import java.util.*;
 
 class ConNguoi {
+
+    public static Scanner getSc() {
+        return sc;
+    }
+
+    public static void setSc(Scanner aSc) {
+        sc = aSc;
+    }
     private String hoTen;
     private String CCCD;
     private String ngaySinh;
     private String SDT;
-    static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
     
     public ConNguoi() {
         

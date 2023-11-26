@@ -62,8 +62,10 @@ public class SanBay {
 
     @Override
     public String toString() {
-        return String.format("| %-12s | %-15s | %-15s |", masanbay, tensanbay, tenthanhpho);
+        return "masanbay=" + masanbay + ", tensanbay=" + tensanbay + ", tenthanhpho=" + tenthanhpho;
     }
+
+
 
     // Phương thức xuất dữ liệu ra màn hình
     public void xuatDuLieu() {

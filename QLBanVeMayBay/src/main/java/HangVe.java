@@ -9,18 +9,32 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class PhanHangVe {
+public class HangVe {
+
     private String maVe;
     private String hangVe;
-    private static final int MAX_VE = 200;
-    private static PhanHangVe[] danhSachHangVe = new PhanHangVe[MAX_VE];
-    private static int soLuongVe = 0;
-    public Scanner sc=new Scanner(System.in);
+    private String gia;
 
-    public PhanHangVe() {
+    private int phoThong;
+    private int thuongGia;
+
+    public HangVe(String maVe, String hangVe, String gia, int phoThong, int thuongGia) {
+        this.maVe = maVe;
+        this.hangVe = hangVe;
+        this.gia = gia;
+        this.phoThong = phoThong;
+        this.thuongGia = thuongGia;
     }
 
-    public PhanHangVe(String maVe, String hangVe) {
+    private static final int MAX_VE = 200;
+    private static HangVe[] danhSachHangVe = new HangVe[MAX_VE];
+    private static int soLuongVe = 0;
+    public Scanner sc = new Scanner(System.in);
+
+    public HangVe() {
+    }
+
+    public HangVe(String maVe, String hangVe) {
         this.maVe = maVe;
         this.hangVe = hangVe;
     }
@@ -40,33 +54,80 @@ public class PhanHangVe {
     public void setHangVe(String hangVe) {
         this.hangVe = hangVe;
     }
-    
-    public void nhapDuLieuPhanHangVe() {
-        System.out.print("Nhap ma ve: ");
-        setMaVe(sc.nextLine());
-        System.out.print("Nhap hang ve: ");
-        setHangVe(sc.nextLine());
+
+    public String getGia() {
+        return gia;
     }
-    
-    @Override 
-    public String toString(){
-        return String.format("| %-6s | %-9s |", maVe,hangVe);
+
+    public void setGia(String gia) {
+        this.gia = gia;
     }
-    
+
+    public static HangVe[] getDanhSachHangVe() {
+        return danhSachHangVe;
+    }
+
+    public static void setDanhSachHangVe(HangVe[] danhSachHangVe) {
+        HangVe.danhSachHangVe = danhSachHangVe;
+    }
+
+    public static int getSoLuongVe() {
+        return soLuongVe;
+    }
+
+    public static void setSoLuongVe(int soLuongVe) {
+        HangVe.soLuongVe = soLuongVe;
+    }
+
+    public Scanner getSc() {
+        return sc;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
+    }
+
+    public int getPhoThong() {
+        return phoThong;
+    }
+
+    public void setPhoThong(int phoThong) {
+        this.phoThong = phoThong;
+    }
+
+    public int getThuongGia() {
+        return thuongGia;
+    }
+
+    public void setThuongGia(int thuongGia) {
+        this.thuongGia = thuongGia;
+    }
+
+    public void nhapDuLieuHangVe() {
+        System.out.print("Nhap gia ve cho hang ve pho thong : ");
+         setPhoThong(sc.nextInt());
+        System.out.print("Nhap gia ve cho hang ve thuong gia: ");
+        setThuongGia(sc.nextInt());
+    }
+
+    @Override
+    public String toString() {
+        return "phoThong=" + phoThong + ", thuongGia=" + thuongGia;
+    }
+
     public void xuatDuLieuPhanHangVe() {
         System.out.println(toString());
     }
-    
+
     public void luuDulieuVaoFile(String tenTep) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(tenTep, true))) {
             writer.println(toString());
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public static void docDuLieuTuFile(String tenFile, PhanHangVe[] danhSachHangVe, int MAX_VE) {
+
+    public static void docDuLieuTuFile(String tenFile, HangVe[] danhSachHangVe, int MAX_VE) {
         try (Scanner sc = new Scanner(new File(tenFile))) {
             while (sc.hasNextLine() && soLuongVe < MAX_VE) {
                 String[] parts = sc.nextLine().split("\\|");
@@ -76,45 +137,44 @@ public class PhanHangVe {
                     String hangVe = parts[1].trim();
 
                     if ("Thuong gia".equalsIgnoreCase(hangVe) || "Pho thong".equalsIgnoreCase(hangVe)) {
-                        PhanHangVe phanHangVe = new PhanHangVe(maVe, hangVe);
+                        HangVe phanHangVe = new HangVe(maVe, hangVe);
                         danhSachHangVe[soLuongVe++] = phanHangVe;
                     } else {
                         System.out.println("Hang ve khong hop le - " + hangVe);
                     }
                 }
             }
-        } 
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } 
+        }
     }
-    
+
     public void capNhatThongTinVe(String maVeCanCapNhat, String hangVeMoi) {
-        
-        for (int i=0;i<danhSachHangVe.length;i++) {
-            if (danhSachHangVe[i] !=null && danhSachHangVe[i].getMaVe().equals(maVeCanCapNhat)) {
+
+        for (int i = 0; i < danhSachHangVe.length; i++) {
+            if (danhSachHangVe[i] != null && danhSachHangVe[i].getMaVe().equals(maVeCanCapNhat)) {
                 System.out.println("Nhap thong tin moi cho ve may bay: ");
-                danhSachHangVe[i].nhapDuLieuPhanHangVe();
-                
+                danhSachHangVe[i].nhapDuLieuHangVe();
+
                 System.out.println("Nhap hang ve moi: ");
-                hangVeMoi=sc.nextLine();
+                hangVeMoi = sc.nextLine();
                 danhSachHangVe[i].setHangVe(hangVeMoi);
-                
+
                 System.out.println("Thong tin ve may bay sau khi cap nhat: ");
                 danhSachHangVe[i].xuatDuLieuPhanHangVe();
                 return;
             }
         }
-        System.out.println("Khong tim thay ve may bay co ma "+ maVeCanCapNhat);
+        System.out.println("Khong tim thay ve may bay co ma " + maVeCanCapNhat);
     }
-    
+
     public void xoaHangVe(String maVeCanXoa) {
         for (int i = 0; i < danhSachHangVe.length; i++) {
             if (danhSachHangVe[i] != null && danhSachHangVe[i].getMaVe().equals(maVeCanXoa)) {
                 System.out.println("Thong tin ve truoc khi xoa:");
                 danhSachHangVe[i].xuatDuLieuPhanHangVe();
-                
-                danhSachHangVe[i] = null; 
+
+                danhSachHangVe[i] = null;
 
                 System.out.println("Da xoa thong tin ve");
                 return;
@@ -122,29 +182,27 @@ public class PhanHangVe {
         }
         System.out.println("Khong tim thay ve co ma " + maVeCanXoa);
     }
-    
+
     public void themVeMoi() {
         if (soLuongVe < MAX_VE) {
-            PhanHangVe veMoi = new PhanHangVe();
-            veMoi.nhapDuLieuPhanHangVe();
+            HangVe veMoi = new HangVe();
+            veMoi.nhapDuLieuHangVe();
 
             String maVe = veMoi.getMaVe();
             String hangVe = veMoi.getHangVe();
 
-        // Kiểm tra hợp lệ của hạng vé trước khi thêm vào danh sách
+            // Kiểm tra hợp lệ của hạng vé trước khi thêm vào danh sách
             if ("Thuong gia".equalsIgnoreCase(hangVe) || "Pho thong".equalsIgnoreCase(hangVe)) {
                 danhSachHangVe[soLuongVe++] = veMoi;
                 System.out.println("Da them mot ve moi");
-            }
-            else {
+            } else {
                 System.out.println("Hang ve khong hop le ");
             }
-        } 
-        else {
-        System.out.println("Danh sach ve da day, khong the them ve moi");
+        } else {
+            System.out.println("Danh sach ve da day, khong the them ve moi");
+        }
     }
-}
-    
+
     public void hienThiDanhSachVe() {
         if (soLuongVe == 0) {
             System.out.println("Danh sach ve hien dang trong.");
@@ -156,4 +214,3 @@ public class PhanHangVe {
         }
     }
 }
-

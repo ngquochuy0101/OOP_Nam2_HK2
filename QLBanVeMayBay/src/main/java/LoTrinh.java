@@ -75,8 +75,10 @@ public class LoTrinh {
 
     @Override
     public String toString() {
-        return String.format("| %-12s | %-15s | %-15s | %-15s |", malotrinh, tenlotrinh, noiden, noidi);
+        return   "malotrinh=" + malotrinh + ", tenlotrinh=" + tenlotrinh + ", noiden=" + noiden + ", noidi=" + noidi ;
     }
+
+  
 
     // Phương thức xuất dữ liệu ra màn hình
     public void xuatDuLieu() {

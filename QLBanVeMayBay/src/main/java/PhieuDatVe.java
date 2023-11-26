@@ -55,11 +55,13 @@ public class PhieuDatVe {
         System.out.print("Nhap ngay dat ve: ");
         setNgayDat(sc.nextLine());
     }
-    
+
     @Override
-    public String toString(){
-        return String.format("| %-6s | %-10s |", maPhieuDat,ngayDat);
+    public String toString() {
+        return   "maPhieuDat=" + maPhieuDat + ", ngayDat=" + ngayDat ;
     }
+    
+   
     
     public void xuatDuLieuPhieuDatVe() {
         System.out.println(toString());

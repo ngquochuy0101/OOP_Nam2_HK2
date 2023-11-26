@@ -4,9 +4,7 @@
  */
 import java.io.*;
 import java.util.Scanner;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TuyenBay {
 
@@ -17,10 +15,11 @@ public class TuyenBay {
     private String matuyenbay;
     private String masanbaycatcanh;
     private String sanbayhacanh;
-    private Date giocatcanh;
-    private Date giohacanh;
+    private String sanbaycatcanh;
+    private String giocatcanh;
+    private String giohacanh;
 
-    public TuyenBay(String matuyenbay, String masanbaycatcanh, String sanbayhacanh, Date giocatcanh, Date giohacanh) {
+    public TuyenBay(String matuyenbay, String masanbaycatcanh, String sanbayhacanh, String giocatcanh, String giohacanh) {
         this.matuyenbay = matuyenbay;
         this.masanbaycatcanh = masanbaycatcanh;
         this.sanbayhacanh = sanbayhacanh;
@@ -40,6 +39,14 @@ public class TuyenBay {
         this.matuyenbay = matuyenbay;
     }
 
+    public String getSanbaycatcanh() {
+        return sanbaycatcanh;
+    }
+
+    public void setSanbaycatcanh(String sanbaycatcanh) {
+        this.sanbaycatcanh = sanbaycatcanh;
+    }
+
     public String getMaSanBayCatCanh() {
         return masanbaycatcanh;
     }
@@ -56,19 +63,19 @@ public class TuyenBay {
         this.sanbayhacanh = sanbayhacanh;
     }
 
-    public Date getGioCatCanh() {
+    public String getGioCatCanh() {
         return giocatcanh;
     }
 
-    public void setGioCatCanh(Date giocatcanh) {
+    public void setGioCatCanh(String giocatcanh) {
         this.giocatcanh = giocatcanh;
     }
 
-    public Date getGioHaCanh() {
+    public String getGioHaCanh() {
         return giohacanh;
     }
 
-    public void setGioHaCanh(Date giohacanh) {
+    public void setGioHaCanh(String giohacanh) {
         this.giohacanh = giohacanh;
     }
 
@@ -78,27 +85,21 @@ public class TuyenBay {
         System.out.println("Nhap ma tuyen bay:");
         this.matuyenbay = scanner.nextLine();
         System.out.println("Nhap ma san bay cat canh:");
-        this.masanbaycatcanh = scanner.nextLine();
+        this.sanbaycatcanh = scanner.nextLine();
         System.out.println("Nhap san bay ha canh:");
         this.sanbayhacanh = scanner.nextLine();
         System.out.println("Nhap gio cat canh (dd/MM/yyyy HH:mm):");
-        String gioCatCanhStr = scanner.nextLine();
+        this.giocatcanh = scanner.nextLine();
         System.out.println("Nhap gio ha canh (dd/MM/yyyy HH:mm):");
-        String gioHaCanhStr = scanner.nextLine();
+        this.giohacanh = scanner.nextLine();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        try {
-            this.giocatcanh = dateFormat.parse(gioCatCanhStr);
-            this.giohacanh = dateFormat.parse(gioHaCanhStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return String.format("| %-12s | %-18s | %-15s | %-21s | %-21s |", matuyenbay, masanbaycatcanh, sanbayhacanh, dateFormat.format(giocatcanh), dateFormat.format(giohacanh));
+        return "matuyenbay=" + matuyenbay + ", sanbaycatcanh=" + sanbaycatcanh
+                + ", sanbayhacanh=" + sanbayhacanh + ", giocatcanh="
+                + giocatcanh + ", giohacanh=" + giohacanh;
     }
 
     // Phương thức xuất dữ liệu ra màn hình
@@ -122,11 +123,11 @@ public class TuyenBay {
             while (scanner.hasNextLine() && soLuongTuyenBay < MAX_TUYENBAY) {
                 String[] parts = scanner.nextLine().split(",");
                 if (parts.length == 5) {
-                    TuyenBay tuyenBay = new TuyenBay(parts[0], parts[1], parts[2], new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(parts[3]), new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(parts[4]));
+                    TuyenBay tuyenBay = new TuyenBay(parts[0], parts[1], parts[2], parts[3], parts[4]);
                     danhSachTuyenBay[soLuongTuyenBay++] = tuyenBay;
                 }
             }
-        } catch (FileNotFoundException | ParseException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -145,13 +146,7 @@ public class TuyenBay {
                 String gioCatCanhStr = scanner.nextLine();
                 System.out.println("Nhap gio ha canh moi (dd/MM/yyyy HH:mm):");
                 String gioHaCanhStr = scanner.nextLine();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                try {
-                    danhSachTuyenBay[i].setGioCatCanh(dateFormat.parse(gioCatCanhStr));
-                    danhSachTuyenBay[i].setGioHaCanh(dateFormat.parse(gioHaCanhStr));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+
                 danhSachTuyenBay[i].xuatDuLieu();
                 break;
             }

@@ -52,8 +52,10 @@ public class HangMayBay {
 
     @Override
     public String toString() {
-        return String.format("| %-12s | %-15s |", mahang, tenhang);
+        return   "mahang=" + mahang + ", tenhang=" + tenhang ;
     }
+
+    
 
     // Phương thức xuất dữ liệu ra màn hình
     public void xuatDuLieu() {

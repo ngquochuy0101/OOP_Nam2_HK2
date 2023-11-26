@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -6,8 +7,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DangKyVaDangNhap {
+
     private static final String USER_FILE = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\users.txt";
     private static Scanner scanner = new Scanner(System.in);
+    private static ChuyenBay cb = new ChuyenBay();
 
     public static void dangKy() {
 
@@ -75,7 +78,6 @@ public class DangKyVaDangNhap {
         String password = scanner.nextLine();
 
         // thêm điều kiện để vào trang admin
-
         try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE))) {
             String line;
             boolean isAuthenticated = false;
@@ -85,7 +87,7 @@ public class DangKyVaDangNhap {
                     System.out.println("Dang nhap thanh cong.");
                     System.out.println("Xin chao!");
                     isAuthenticated = true;
-                    // chuyển trang qua admin
+                   cb.menuSetChuyenBayUser();
                     break;
                 }
             }
@@ -97,8 +99,7 @@ public class DangKyVaDangNhap {
         }
     }
 
-    public static void main(String[] args) {
-
+    public void RunDangKyDangNhap() {
         while (true) {
             System.out.println("----- MENU -----");
             System.out.println("1. Dang ky");
@@ -124,4 +125,5 @@ public class DangKyVaDangNhap {
         }
 
     }
+
 }

@@ -61,14 +61,16 @@ public class MayBay {
         this.mota = scanner.nextLine();
     }
 
-    @Override
-    public String toString() {
-        return String.format("| %-12s | %-15s | %-15s |", mamaybay, loaimaybay, mota);
-    }
-
+    
+   
     // Phương thức xuất dữ liệu ra màn hình
     public void xuatDuLieu() {
         System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        return "mamaybay=" + mamaybay + ", loaimaybay=" + loaimaybay + ", mota=" + mota;
     }
 
     // Phương thức lưu dữ liệu vào file
