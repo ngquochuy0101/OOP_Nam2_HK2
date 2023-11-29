@@ -1,2 +1,2 @@
 San bay cat canh TSN, San bay ha canh Noi bai, Ma chuyen bay: A3, Ten hang: VietNam Airline Tong gia tien: 66, Thong tin hanh khach thu 1: Ma ve HJ5V39, Ho ten: nguyen van a, CCCD: 111111, Ngay sinh: 1/1/2000, So dien thoai: 0123456, Thong tin hanh khach thu 2: Ma ve AULL8M, Ho ten: nguyen van b, CCCD: 222222, Ngay sinh: 1/2/2000, So dien thoai: 0123455
-San bay cat canh TSN, San bay ha canh Noi bai, Ma chuyen bay: A3, Ten hang: VietNam Airline Tong gia tien: 66, Thong tin hanh khach thu 1: Ma ve RXNFJV, Ho ten: ha thanh khanh, CCCD: 123, Ngay sinh: 1/1/2004, So dien thoai: 123, Thong tin hanh khach thu 2: Ma ve 8Y6SID, Ho ten: Hs van hung, CCCD: 132, Ngay sinh: 12/12/2000, So dien thoai: 132
+ 

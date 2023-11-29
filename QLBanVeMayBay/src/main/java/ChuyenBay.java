@@ -6,6 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalQueries;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -23,6 +28,8 @@ public class ChuyenBay {
 
     private static final String chuyenBayFILE = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\chuyenBay.txt";
     private String maChuyenBay;
+    private String slChoNgoi;
+    private String slKhach;
     private boolean trangThai = true;
     private MayBay mayBay = new MayBay();
     private LichBay lichBay = new LichBay();
@@ -36,15 +43,16 @@ public class ChuyenBay {
     private HangVe hangVe = new HangVe();
     private ConNguoi conNguoi = new ConNguoi();
     protected static Scanner sc = new Scanner(System.in);
-    private static String[] chuyenBayArr = new String[5];
+    private static String[] chuyenBayArr = new String[2];
 
     public ChuyenBay() {
-
+        slKhach = "0";
     }
 
-    public ChuyenBay(String maChuyenBay, boolean trangThai) {
+    public ChuyenBay(String maChuyenBay, boolean trangThai, String slChoNgoi) {
         this.maChuyenBay = maChuyenBay;
         this.trangThai = trangThai;
+        this.slChoNgoi = slChoNgoi;
     }
 
     public String getMaChuyenBay() {
@@ -52,8 +60,9 @@ public class ChuyenBay {
     }
 
     public void setMaChuyenBay() {
-        System.out.println("Vui long nhap Ma chuyen bay: ");
-        maChuyenBay = sc.nextLine();
+        maChuyenBay = generateRandomString(4);
+        System.out.println("Ma chuyen bay la: " + maChuyenBay);
+
     }
 
     public boolean isTrangThai() {
@@ -158,6 +167,23 @@ public class ChuyenBay {
         hangVe.nhapDuLieuHangVe();
     }
 
+    public String getSlChoNgoi() {
+        return slChoNgoi;
+    }
+
+    public void setSlChoNgoi() {
+        System.out.println("Nhap so luong cho ngoi: ");
+        slChoNgoi = sc.nextLine();
+    }
+
+    public String getSlKhach() {
+        return slKhach;
+    }
+
+    public void setSlKhach(String slKhach) {
+        this.slKhach = slKhach;
+    }
+
     public static boolean isSubstringPresent(String string1, String string2) {
         String lowercaseString1 = string1.toLowerCase(); // Chuyển chuỗi thứ nhất về chữ thường
         String lowercaseString2 = string2.toLowerCase(); // Chuyển chuỗi thứ hai về chữ thường
@@ -224,6 +250,15 @@ public class ChuyenBay {
         return sb.toString();
     }
 
+    public static boolean compareDateTime(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+
+        LocalDateTime dateTime1 = LocalDateTime.now();
+        LocalDateTime dateTime2 = LocalDateTime.parse(dateString, formatter);
+
+        return dateTime1.isBefore(dateTime2) || dateTime1.isEqual(dateTime2);
+    }
+
     public void setChuyenBayUser() throws FileNotFoundException {
         String thongTinVe = "";
 
@@ -232,13 +267,13 @@ public class ChuyenBay {
 
         System.out.println("Nhap san bay cat canh:");
         sc.nextLine();
-        String sanbaycatcanh = sc.nextLine();
+        String sanbaycatcanh = "tan son nhat";
         System.out.println("Nhap san bay ha canh:");
-        String sanbayhacanh = sc.nextLine();
+        String sanbayhacanh = "noi bai";
         System.out.println("Nhap gio cat canh (dd/MM/yyyy HH:mm):");
-        String gioCatCanh = sc.nextLine();
+        String gioCatCanh = "1/1/2023 12:00";
         System.out.println("Nhap gio ha canh (dd/MM/yyyy HH:mm):");
-        String gioHaCanh = sc.nextLine();
+        String gioHaCanh = "1/1/2023 13:00";
 
         System.out.printf("%-8s %-20s %-10s %-10s%n", "Ma", "Ten hang", "Thuong gia", "Pho thong");
         boolean found = false;
@@ -248,27 +283,20 @@ public class ChuyenBay {
             String sanbayHaCanhFile = getValueByKey(row, "sanbayhacanh");
             String gioCatCanhFile = getValueByKey(row, "giocatcanh");
             String gioHaCanhFile = getValueByKey(row, "giohacanh");
-//            System.out.println(gioHaCanh);
-//            System.out.println(gioHaCanhFile);
-//            System.out.println(gioCatCanh);
-//            System.out.println(gioCatCanhFile);
-//            System.out.println(sanbayhacanh);
-//            System.out.println(sanbayHaCanhFile);
-//            System.out.println(sanbaycatcanh);
-//            System.out.println(sanbayCatCanhFile);
-
-            if ((sanbaycatcanh.equalsIgnoreCase(sanbayCatCanhFile)
+            String ngayhieulucFile = getValueByKey(row, "ngayhieuluc");
+            String slChoNgoiFile = getValueByKey(row, "slChoNgoi");
+            String slKhachFile = getValueByKey(row, "slKhach"); 
+            if (sanbaycatcanh.equalsIgnoreCase(sanbayCatCanhFile)
                     && sanbayhacanh.equalsIgnoreCase(sanbayHaCanhFile)
                     && gioCatCanh.equalsIgnoreCase(gioCatCanhFile)
-                    && gioHaCanh.equalsIgnoreCase(gioHaCanhFile))) {
-                found = true;
-
-                String maFile = getValueByKey(row, "maChuyenBay");
-                String tenHang = getValueByKey(row, "tenhang");
-                String thuongGia = getValueByKey(row, "thuongGia");
-                String phoThong = getValueByKey(row, "phoThong");
-                System.out.printf("%-8s %-20s %-10s %-10s%n",
-                        maFile, tenHang, thuongGia, phoThong);
+                    && gioHaCanh.equalsIgnoreCase(gioHaCanhFile)) {
+                        found = true;
+                        String maFile = getValueByKey(row, "maChuyenBay");
+                        String tenHang = getValueByKey(row, "tenhang");
+                        String thuongGia = getValueByKey(row, "thuongGia");
+                        String phoThong = getValueByKey(row, "phoThong");
+                        System.out.printf("%-8s %-20s %-10s %-10s%n",
+                                maFile, tenHang, thuongGia, phoThong);    
             }
 
         }
@@ -417,17 +445,21 @@ public class ChuyenBay {
 
     @Override
     public String toString() {
-        return "maChuyenBay=" + maChuyenBay + "," + hangMayBay.toString() + "," + loTrinh.toString()
-                + "," + sanBay.toString()
-                + "," + mayBay.toString()
-                + "," + lichBay.toString() + ","
-                + tuyenBay.toString() + "," + hangVe.toString();
+        return "maChuyenBay=" + maChuyenBay
+                + "," + "slChoNgoi=" + slChoNgoi
+                + "," + "slKhach=" + Integer.parseInt(slKhach)
+                + ", " + hangMayBay.toString()
+                + "," + loTrinh.toString()
+                + ", " + sanBay.toString()
+                + ", " + mayBay.toString()
+                + ", " + lichBay.toString() + ", "
+                + tuyenBay.toString() + ", " + hangVe.toString();
 
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        // ChuyenBay cbAdmin = new ChuyenBay();
-        // cbAdmin.setChuyenBayAdmin();
+//        ChuyenBay cbAdmin = new ChuyenBay();
+//        cbAdmin.setChuyenBayAdmin();
 
         ChuyenBay cbUser = new ChuyenBay();
         cbUser.menuSetChuyenBayUser();
