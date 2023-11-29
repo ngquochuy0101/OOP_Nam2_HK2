@@ -25,6 +25,11 @@ public class HangVe {
         this.phoThong = phoThong;
         this.thuongGia = thuongGia;
     }
+     public HangVe( int phoThong, int thuongGia) {
+        this.phoThong = phoThong;
+        this.thuongGia = thuongGia;
+    }
+
 
     private static final int MAX_VE = 200;
     private static HangVe[] danhSachHangVe = new HangVe[MAX_VE];

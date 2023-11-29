@@ -87,7 +87,8 @@ public class DangKyVaDangNhap {
                     System.out.println("Dang nhap thanh cong.");
                     System.out.println("Xin chao!");
                     isAuthenticated = true;
-                   cb.menuSetChuyenBayUser();
+                    cb.setUser(username);
+                    cb.menuSetChuyenBayUser();
                     break;
                 }
             }

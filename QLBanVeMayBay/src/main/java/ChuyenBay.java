@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +45,9 @@ public class ChuyenBay {
     private HangVe hangVe = new HangVe();
     private ConNguoi conNguoi = new ConNguoi();
     protected static Scanner sc = new Scanner(System.in);
-    private static String[] chuyenBayArr = new String[2];
+    private String user;
+    private static String[] chuyenBayArr = new String[3];
+    private static ChuyenBay[] dsChuyenBay = new ChuyenBay[20];
 
     public ChuyenBay() {
         slKhach = "0";
@@ -60,8 +64,8 @@ public class ChuyenBay {
     }
 
     public void setMaChuyenBay() {
-        maChuyenBay = generateRandomString(4);
-        System.out.println("Ma chuyen bay la: " + maChuyenBay);
+        System.out.println("Nhap Ma chuyen bay: ");
+        maChuyenBay = sc.nextLine();
 
     }
 
@@ -171,6 +175,14 @@ public class ChuyenBay {
         return slChoNgoi;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public void setSlChoNgoi() {
         System.out.println("Nhap so luong cho ngoi: ");
         slChoNgoi = sc.nextLine();
@@ -212,6 +224,14 @@ public class ChuyenBay {
             }
         }
 
+    }
+
+    public static String getValueAfterEqualSign(String input) {
+        int equalSignIndex = input.indexOf("=");
+        if (equalSignIndex != -1 && equalSignIndex < input.length() - 1) {
+            return input.substring(equalSignIndex + 1).trim();
+        }
+        return input;
     }
 
     public static void readDataFromFile(String filePath) {
@@ -260,7 +280,7 @@ public class ChuyenBay {
     }
 
     public void setChuyenBayUser() throws FileNotFoundException {
-        String thongTinVe = "";
+        String thongTinVe = user + ", ";
 
         readDataFromFile(chuyenBayFILE);
         System.out.println("------Moi nhap thong tin chuyen bay------");
@@ -285,18 +305,18 @@ public class ChuyenBay {
             String gioHaCanhFile = getValueByKey(row, "giohacanh");
             String ngayhieulucFile = getValueByKey(row, "ngayhieuluc");
             String slChoNgoiFile = getValueByKey(row, "slChoNgoi");
-            String slKhachFile = getValueByKey(row, "slKhach"); 
+            String slKhachFile = getValueByKey(row, "slKhach");
             if (sanbaycatcanh.equalsIgnoreCase(sanbayCatCanhFile)
                     && sanbayhacanh.equalsIgnoreCase(sanbayHaCanhFile)
                     && gioCatCanh.equalsIgnoreCase(gioCatCanhFile)
                     && gioHaCanh.equalsIgnoreCase(gioHaCanhFile)) {
-                        found = true;
-                        String maFile = getValueByKey(row, "maChuyenBay");
-                        String tenHang = getValueByKey(row, "tenhang");
-                        String thuongGia = getValueByKey(row, "thuongGia");
-                        String phoThong = getValueByKey(row, "phoThong");
-                        System.out.printf("%-8s %-20s %-10s %-10s%n",
-                                maFile, tenHang, thuongGia, phoThong);    
+                found = true;
+                String maFile = getValueByKey(row, "maChuyenBay");
+                String tenHang = getValueByKey(row, "tenhang");
+                String thuongGia = getValueByKey(row, "thuongGia");
+                String phoThong = getValueByKey(row, "phoThong");
+                System.out.printf("%-8s %-20s %-10s %-10s%n",
+                        maFile, tenHang, thuongGia, phoThong);
             }
 
         }
@@ -392,12 +412,22 @@ public class ChuyenBay {
         }
     }
 
-    public void savetoFile(String content, String filePath) {
+    public static void savetoFile(String content, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(content);
             writer.newLine();
         } catch (IOException e) {
             System.out.println("Da xay ra loi khi luu du lieu.");
+        }
+    }
+
+    public static void deleteFileContent(String filePath) {
+        try {
+            FileWriter fileWriter = new FileWriter(filePath);
+            fileWriter.write(""); // Ghi một chuỗi rỗng để xóa dữ liệu
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("Da xay ra loi khi xoa du lieu " + e.getMessage());
         }
     }
 
@@ -425,6 +455,7 @@ public class ChuyenBay {
     public void setChuyenBayAdmin() {
         setMaChuyenBay();
         setHangMayBay();
+        setSlChoNgoi();
         setLoTrinh();
         setSanBay();
         setMayBay();
@@ -443,6 +474,222 @@ public class ChuyenBay {
 
     }
 
+    public static String[][] readDataFromFile2Aray(String filePath) throws IOException {
+        // Đọc nội dung của tệp tin
+        String content = new String(Files.readAllBytes(Paths.get(filePath)));
+
+        // Tách các dòng dữ liệu bằng ký tự xuống dòng "\n"
+        String[] lines = content.split("\n");
+
+        // Tạo mảng hai chiều để lưu trữ dữ liệu
+        String[][] data = new String[lines.length][];
+
+        // Duyệt qua từng dòng dữ liệu
+        for (int i = 0; i < lines.length; i++) {
+            // Tách các giá trị trong dòng bằng dấu phẩy ","
+            String[] values = lines[i].split(",");
+
+            // Lưu trữ dữ liệu vào mảng hai chiều
+            data[i] = values;
+        }
+
+        return data;
+    }
+
+    public static String getValueAfterEqualSign2Aray(String input) {
+        int equalSignIndex = input.indexOf("=");
+        if (equalSignIndex != -1 && equalSignIndex < input.length() - 1) {
+            return input.substring(equalSignIndex + 1).trim();
+        }
+        return input;
+    }
+
+    public static void dataChuyenBay() {
+        try {
+            String[][] data = readDataFromFile2Aray(chuyenBayFILE);
+            int i = 0;
+
+            for (String[] row : data) {
+                if (row.length >= 25) {
+                    ChuyenBay cb = new ChuyenBay();
+                    cb.maChuyenBay = getValueAfterEqualSign(row[0]);
+                    cb.slChoNgoi = getValueAfterEqualSign(row[1]);
+                    cb.slKhach = getValueAfterEqualSign(row[2]);
+                    cb.hangMayBay = new HangMayBay(getValueAfterEqualSign(row[3]), getValueAfterEqualSign(row[4]));
+
+                    // Check the lengths of remaining elements before accessing them
+                    if (row.length >= 25) {
+                        cb.loTrinh = new LoTrinh(getValueAfterEqualSign(row[5]), getValueAfterEqualSign(row[6]),
+                                getValueAfterEqualSign(row[7]), getValueAfterEqualSign(row[8]));
+                        cb.sanBay = new SanBay(getValueAfterEqualSign(row[9]), getValueAfterEqualSign(row[10]),
+                                getValueAfterEqualSign(row[11]));
+                        cb.mayBay = new MayBay(getValueAfterEqualSign(row[12]), "cho khach", "cho khach");
+                        cb.lichBay = new LichBay(getValueAfterEqualSign(row[15]), getValueAfterEqualSign(row[16]),
+                                getValueAfterEqualSign(row[17]));
+                        cb.tuyenBay = new TuyenBay(getValueAfterEqualSign(row[18]), getValueAfterEqualSign(row[19]),
+                                getValueAfterEqualSign(row[20]), getValueAfterEqualSign(row[21]),
+                                getValueAfterEqualSign(row[22]));
+                        cb.hangVe = new HangVe(Integer.parseInt(getValueAfterEqualSign(row[23])),
+                                Integer.parseInt(getValueAfterEqualSign(row[24])));
+                    }
+
+                    dsChuyenBay[i] = cb;
+                    i++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void printChuyenBay() {
+
+        System.out.printf("%-10s %-20s %-10s %-10s\n", "Ma",
+                "So luong cho ngoi", "Pho thong", "Thuong gia");
+        for (ChuyenBay row : dsChuyenBay) {
+            if (row != null) {
+                String maChuyenBayFile = row.maChuyenBay;
+                String slChoNgoiFile = row.slChoNgoi;
+
+                int thuongGiaFile = row.hangVe.getThuongGia();
+                int phoThongFile = row.hangVe.getPhoThong();
+                if (maChuyenBayFile != null && slChoNgoiFile != null) {
+                    System.out.printf("%-10s %-20s %-10s %-10s\n", maChuyenBayFile,
+                            slChoNgoiFile, thuongGiaFile, phoThongFile);
+                }
+            }
+        }
+
+    }
+
+    public static void suaThongTinChuyenBay() throws IOException {
+        String maSua = "";
+        while (true) {
+            printChuyenBay();
+            System.out.println("----------------------------------");
+            System.out.println("Nhap ma chuyen bay de sua (0 de thoat): ");
+            maSua = sc.nextLine();
+            boolean f = false;
+
+            if (maSua.equals("0")) {
+                return;
+            }
+            for (ChuyenBay cb : dsChuyenBay) {
+                if (cb != null && cb.getMaChuyenBay() != null && cb.getMaChuyenBay().equals(maSua)) {
+                    f = true;
+                    break;
+                }
+            }
+            if (f) {
+
+                // Tạo đối tượng BufferedWriter để ghi vào tệp tạm thời
+                // Duyệt qua từng dòng trong tệp chuyenBay.txt
+                for (ChuyenBay cb : dsChuyenBay) {
+
+                    // Nếu tìm thấy mã chuyến bay cần sửa
+                    if (cb != null && cb.getMaChuyenBay() != null && cb.getMaChuyenBay().equals(maSua)) {
+                        System.out.println("Ban muon sua thong tin nao?");
+                        System.out.println("1. So luong cho ngoi");
+                        System.out.println("2. Gia pho thong");
+                        System.out.println("3. Gia thuong gia");
+                        System.out.println("0. Thoat");
+
+                        // Đọc lựa chọn của người dùng
+                        int choice = sc.nextInt();
+                        sc.nextLine(); // Đọc ký tự xuống dòng sau khi đọc số nguyên
+
+                        // Thực hiện thay đổi thông tin tương ứng với lựa chọn
+                        switch (choice) {
+                            case 1 -> {
+                                System.out.print("Nhap so luong cho ngoi moi: ");
+                                String slChoNgoi = sc.nextLine();
+                                cb.slChoNgoi = slChoNgoi;
+                            }
+
+                            case 2 -> {
+                                System.out.print("Nhap gia pho thong moi: ");
+                                String giaPhoThong = sc.nextLine();
+                                cb.hangVe.setPhoThong(Integer.parseInt(giaPhoThong));
+                            }
+
+                            case 3 -> {
+                                System.out.print("Nhap gia thuong gia moi: ");
+                                String giaThuongGia = sc.nextLine();
+                                cb.hangVe.setThuongGia(Integer.parseInt(giaThuongGia));
+                            }
+
+                            case 0 -> {
+                                // Thoát khỏi vòng lặp và không ghi lại dòng này
+                                System.out.println("Da huy sua thong tin chuyen bay.");
+                                return;
+                            }
+
+                            default -> {
+                                System.out.println("Lua chon khong hop le. Vui long chon lai!");
+                                continue;
+                            }
+                        }
+                    }
+                }
+                deleteFileContent(chuyenBayFILE);
+                String s = "";
+                for (ChuyenBay cb : dsChuyenBay) {
+                    if (cb != null) {
+                        s += cb.toString() + "\n";
+                    }
+                }
+                savetoFile(s, chuyenBayFILE);
+                System.out.println("Da sua thanh cong!");
+            } else {
+                System.out.println("Khong tim thay ma chuyen bay!");
+            }
+        }
+    }
+
+    public static void xoaThongTinChuyenBay() {
+        while (true) {
+            String maXoa = "";
+            printChuyenBay();
+            System.out.println("----------------------------------");
+            System.out.println("Nhap ma chuyen bay de xoa (0 de thoat): ");
+            maXoa = sc.nextLine();
+            boolean f = false;
+
+            if (maXoa.equals("0")) {
+                return;
+            }
+            for (ChuyenBay cb : dsChuyenBay) {
+                if (cb != null && cb.getMaChuyenBay() != null && cb.getMaChuyenBay().equals(maXoa)) {
+                    f = true;
+                    break;
+                }
+            }
+            if (f) {
+
+                int index = -1;
+                for (int i = 0; i < dsChuyenBay.length; i++) {
+                    if (dsChuyenBay[i] != null && dsChuyenBay[i].getMaChuyenBay().equals(maXoa)) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index != -1) {
+                    ChuyenBay chuyenBayCanXoa = dsChuyenBay[index];
+
+                    if (chuyenBayCanXoa.getSlKhach().equals("0")) {
+                        dsChuyenBay[index] = null;
+                        System.out.println("Da xoa thong tin chuyen bay thanh cong.");
+                    } else {
+                        System.out.println("Khong the xoa chuyen bay da co khach dat ve.");
+                    }
+                }
+            } else {
+                System.out.println("Khong tim thay chuyen bay!");
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "maChuyenBay=" + maChuyenBay
@@ -457,12 +704,15 @@ public class ChuyenBay {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        dataChuyenBay();
 //        ChuyenBay cbAdmin = new ChuyenBay();
 //        cbAdmin.setChuyenBayAdmin();
-
-        ChuyenBay cbUser = new ChuyenBay();
-        cbUser.menuSetChuyenBayUser();
+//        ChuyenBay cbUser = new ChuyenBay();
+//        cbUser.menuSetChuyenBayUser();
+//        suaThongTinChuyenBay();
+//        printChuyenBay();
+        xoaThongTinChuyenBay();
     }
 
 }

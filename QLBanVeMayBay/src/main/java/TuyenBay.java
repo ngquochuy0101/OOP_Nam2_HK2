@@ -19,9 +19,10 @@ public class TuyenBay {
     private String giocatcanh;
     private String giohacanh;
 
-    public TuyenBay(String matuyenbay, String masanbaycatcanh, String sanbayhacanh, String giocatcanh, String giohacanh) {
+   
+     public TuyenBay(String matuyenbay, String sanbaycatcanh, String sanbayhacanh, String giocatcanh, String giohacanh) {
         this.matuyenbay = matuyenbay;
-        this.masanbaycatcanh = masanbaycatcanh;
+        this.sanbaycatcanh = sanbaycatcanh;
         this.sanbayhacanh = sanbayhacanh;
         this.giocatcanh = giocatcanh;
         this.giohacanh = giohacanh;

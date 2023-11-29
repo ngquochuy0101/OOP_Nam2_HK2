@@ -58,8 +58,7 @@ public class MayBay {
         this.mamaybay = scanner.nextLine();
         System.out.println("Nhap loai may bay:");
         this.loaimaybay = scanner.nextLine();scanner.nextLine();
-          System.out.println("Nhap so luong cho ngoi:");
-        slGheNgoi=scanner.nextInt();
+         
     }
 
     
@@ -71,7 +70,7 @@ public class MayBay {
 
     @Override
     public String toString() {
-        return "mamaybay=" + mamaybay + ", loaimaybay=" + loaimaybay + ", mota=" + mota+", slghengoi=" + slGheNgoi;
+        return "mamaybay=" + mamaybay + ", loaimaybay=" + loaimaybay + ", mota=" + mota;
     }
 
     // Phương thức lưu dữ liệu vào file
