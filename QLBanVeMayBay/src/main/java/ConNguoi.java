@@ -1,3 +1,5 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 class ConNguoi {
@@ -50,14 +52,34 @@ class ConNguoi {
     public String getSDT() {
         return SDT;
     }
+
+    private String kiemTraNgaySinh(String ngaySinh) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = inputFormat.parse(ngaySinh);
+            return outputFormat.format(date);
+        } 
+        catch (ParseException e) {
+            System.out.println("Ngay sinh khong hop le, vui long su dung dinh dang dd/MM/yyyy.");
+            return null;
+        }
+    }
+    
     
     public void nhapTT() {
         System.out.println("Nhap ho ten: ");
         setHoTen(sc.nextLine());
         System.out.println("Nhap so CCCD: ");
         setCCCD(sc.nextLine());
-        System.out.println("Nhap ngay sinh (dd/mm/yy): ");
+        System.out.println("Nhap ngay sinh (dd/mm/yyyy): ");
         setNgaySinh(sc.nextLine());
+        String check = kiemTraNgaySinh(getNgaySinh());
+
+        if (check!= null) {
+            setNgaySinh(check);
+        }
+
         System.out.println("Nhap so dien thoai: ");
         setSDT(sc.nextLine());
     }

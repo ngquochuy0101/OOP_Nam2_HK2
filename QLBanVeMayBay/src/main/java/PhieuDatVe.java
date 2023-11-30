@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,12 +20,18 @@ import java.util.Scanner;
  * @author GIA NGHI TRINH
  */
 public class PhieuDatVe {
+    private static final String USER_FILE = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\users.txt";
+
     private String maPhieuDat;
     private String ngayDat;
     private static final int MAX_PHIEU = 200;
     private static PhieuDatVe[] danhSachPhieuDatVe = new PhieuDatVe[MAX_PHIEU];
     private static int soLuongPhieuDatVe = 0;
     public Scanner sc= new Scanner(System.in);
+    private static ChuyenBay cb = new ChuyenBay();
+    private static ConNguoi tt = new ConNguoi();
+
+
 
     public PhieuDatVe() {
     }
@@ -64,7 +72,25 @@ public class PhieuDatVe {
    
     
     public void xuatDuLieuPhieuDatVe() {
+
         System.out.println(toString());
+        System.out.println("Thong tin nguoi dat ve: ");
+        try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 1 && parts[0].equals(cb.getUser())) {
+                    tt.setHoTen(parts[2]);
+                    tt.setCCCD(parts[3]);
+                    tt.setNgaySinh(parts[4]);
+                    tt.setSDT(parts[5]);
+                    tt.xuatTT(); // Tim thay ten tai khoan trong tep tin
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Da xay ra loi khi doc du lieu.");
+        }
+
     }
     
     private String kiemTraNgayDat(String ngayDat) {

@@ -9,8 +9,12 @@ import java.util.Scanner;
 public class DangKyVaDangNhap {
 
     private static final String USER_FILE = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\users.txt";
+    private static final String CURRENT = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\current.txt";
+
     private static Scanner scanner = new Scanner(System.in);
     private static ChuyenBay cb = new ChuyenBay();
+    private static ConNguoi tt = new ConNguoi();
+
 
     public static void dangKy() {
 
@@ -29,19 +33,20 @@ public class DangKyVaDangNhap {
             String password = scanner.nextLine();
             if (password.length() >= 6 && password.length() <= 12) {
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE, true))) {
-                    writer.write(username + "," + password);
+                    tt.nhapTT();
+                    writer.write(username + "," + password + "," + tt.getHoTen() + "," + tt.getCCCD() + "," + tt.getNgaySinh() + "," + tt.getSDT());
                     writer.newLine();
                     System.out.println("Dang ky thanh cong.");
                 } catch (IOException e) {
                     System.out.println("Da xay ra loi khi luu du lieu.");
                 }
             } else {
-                System.out.println("Mat khau phai luong hon 6 va be hon 12");
+                System.out.println("Mat khau phai lon hon 6 va be hon 12");
                 return;
             }
 
         } else {
-            System.out.println("Ten tai khoan phai luong hon 6 va be hon 12");
+            System.out.println("Ten tai khoan phai lon hon 6 va be hon 12");
             return;
         }
 
