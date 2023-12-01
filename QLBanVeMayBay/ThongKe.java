@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class ThongKe {
      public static void main(String[] args) throws IOException {
         // Đọc nội dung của tệp tin
-        String content = new String(Files.readAllBytes(Paths.get("test.txt")));
+        String content = new String(Files.readAllBytes(Paths.get("chuyenBay.txt")));
 
         // Tách các dòng dữ liệu bằng ký tự xuống dòng "\n"
         String[] lines = content.split("\n");
