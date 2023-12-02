@@ -14,9 +14,11 @@ public class HangVe {
     private String maVe;
     private String hangVe;
     private String gia;
+    
 
     private int phoThong;
     private int thuongGia;
+    private boolean trangThai=true;
 
     public HangVe(String maVe, String hangVe, String gia, int phoThong, int thuongGia) {
         this.maVe = maVe;
@@ -42,6 +44,14 @@ public class HangVe {
     public HangVe(String maVe, String hangVe) {
         this.maVe = maVe;
         this.hangVe = hangVe;
+    }
+
+    public boolean getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
     }
 
     public String getMaVe() {
@@ -218,4 +228,6 @@ public class HangVe {
             }
         }
     }
+
+  
 }

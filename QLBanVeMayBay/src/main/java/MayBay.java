@@ -57,7 +57,7 @@ public class MayBay {
         System.out.println("Nhap ma may bay:");
         this.mamaybay = scanner.nextLine();
         System.out.println("Nhap loai may bay:");
-        this.loaimaybay = scanner.nextLine();scanner.nextLine();
+        this.loaimaybay = scanner.nextLine();
          
     }
 
