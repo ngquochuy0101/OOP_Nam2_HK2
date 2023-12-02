@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class DangKyVaDangNhap {
 
     private static final String USER_FILE = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\users.txt";
-    private static final String CURRENT = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\current.txt";
 
     private static Scanner scanner = new Scanner(System.in);
     private static ChuyenBay cb = new ChuyenBay();
@@ -20,7 +19,7 @@ public class DangKyVaDangNhap {
 
         System.out.println("----- Dang ky -----");
         System.out.print("Nhap ten tai khoan: ");
-        scanner.nextLine();
+        // scanner.nextLine();
         String username = scanner.nextLine();
         if (username.length() >= 6 && username.length() <= 12) {
 
