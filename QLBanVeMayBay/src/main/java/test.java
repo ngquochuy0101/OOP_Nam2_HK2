@@ -1,57 +1,38 @@
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class test {
 
-    public static void main(String[] args) {
-        String filePath = "D:\\DO_AN\\OOP\\QLBanVeMayBay\\chuyenBay.txt"; // Đường dẫn đến tệp tin chuyenBay.txt
+    public static void main(String[] args) throws IOException {
+     updateValue("A", "slPhoThong", "2");
+    }
 
-        try {
-            String[][] data = readDataFromFile(filePath);
+    public static void updateValue(String maChuyenBay, String key, String value) throws IOException {
+        Path filePath = Paths.get("D:\\DO_AN\\OOP\\QLBanVeMayBay\\chuyenBay.txt");
 
-            // In ra các giá trị sau dấu bằng trong mảng
-            int i=0;
-            for (String[] row : data) {
-                for (String value : row) {
-                    String trimmedValue = getValueAfterEqualSign(value);
-                    System.out.print(trimmedValue +" "+ i++ +" ");
-                }
-                System.out.println();
+        // Đọc tất cả các dòng trong tệp
+        String content = Files.readString(filePath);
+        // Tách các cặp key=value thành một mảng các cặp
+        String[] pairs = content.split(",");
+        for (int i = 0; i < pairs.length; i++) {
+            String[] keyValue = pairs[i].split("=");
+            if (keyValue.length == 2 && keyValue[0].equals(key) && keyValue[1].equals(maChuyenBay)) {
+                // Tìm thấy cặp key=value phù hợp, thay đổi giá trị
+                pairs[i] = key + "=" + value;
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        // Ghi lại nội dung đã được cập nhật vào tệp
+        String updatedContent = String.join(",", pairs);
+        Files.write(filePath, updatedContent.getBytes());
     }
 
-    public static String[][] readDataFromFile(String filePath) throws IOException {
-        // Đọc nội dung của tệp tin
-        String content = new String(Files.readAllBytes(Paths.get(filePath)));
-
-        // Tách các dòng dữ liệu bằng ký tự xuống dòng "\n"
-        String[] lines = content.split("\n");
-
-        // Tạo mảng hai chiều để lưu trữ dữ liệu
-        String[][] data = new String[lines.length][];
-
-        // Duyệt qua từng dòng dữ liệu
-        for (int i = 0; i < lines.length; i++) {
-            // Tách các giá trị trong dòng bằng dấu phẩy ","
-            String[] values = lines[i].split(",");
-
-            // Lưu trữ dữ liệu vào mảng hai chiều
-            data[i] = values;
-        }
-
-        return data;
-    }
-
-    public static String getValueAfterEqualSign(String input) {
-        int equalSignIndex = input.indexOf("=");
-        if (equalSignIndex != -1 && equalSignIndex < input.length() - 1) {
-            return input.substring(equalSignIndex + 1).trim();
-        }
-        return input;
-    }
 }
